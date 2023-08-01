@@ -1,5 +1,5 @@
 describe('hello', () => {
-    it("Should say hello", () => {
+    it("should say hello", () => {
         const name = "Hello arif"
         expect(name).toBe("Hello arif")
     })
