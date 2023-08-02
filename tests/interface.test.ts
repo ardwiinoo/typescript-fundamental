@@ -1,5 +1,7 @@
 import { Employee, Manager } from "../src/employee"
 import { Seller } from "../src/interface"
+import { Person } from "../src/person";
+import { sayHello } from './../src/sayHello';
 
 describe("Interface", () => {
     it("should support in typescript", () => {
@@ -7,7 +9,7 @@ describe("Interface", () => {
         const seller: Seller = {
             id: 1,
             name: "Toko ABC",
-            nib: "123111414"
+            nib: "123111414" 
         }
 
         seller.name = "Toko ABC 2"
@@ -72,5 +74,51 @@ describe("Interface", () => {
         }
 
         console.info(manager)
+    })
+
+    it("should support function in interfaces", () => {
+        const person: Person = {
+            name: "Bahar",
+            sayHola(name: string): string {
+                return `Hola ${name}`
+            }
+        }
+
+        console.info(person.sayHola("Alex"))
+    })
+
+    it("should support intersection types", () => {
+
+        interface HasName {
+            name: string
+        }
+
+        interface HasId {
+            id: number
+        }
+
+        type Domain = HasId & HasName
+
+        const domain: Domain = {
+            id: 1,
+            name: "namanya"
+        }
+
+        console.info(domain)
+    })
+
+    it("should support type assertions", () => {
+
+        const person: any = {
+            name: "Rudi",
+            age: 30
+        }
+
+        // bisa jadi error, karena isi tidak sama
+        const person2: Person = person as Person
+        // person2.sayHola
+
+        console.info(person2)
+        
     })
 })
